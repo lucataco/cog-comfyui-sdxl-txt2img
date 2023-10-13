@@ -4,6 +4,7 @@ import time
 from cog import BasePredictor, Input, Path
 # from typing import List
 import os
+import torch
 import shutil
 import uuid
 import json
@@ -97,9 +98,14 @@ class Predictor(BasePredictor):
             description="Steps",
             default=30
         ),
-        seed: int = Input(description="Sampling seed", default=1338),
+        seed: int = Input(description="Sampling seed, leave Empty for Random", default=None),
     ) -> Path:
         """Run a single prediction on the model"""
+        if seed is None:
+            seed = int.from_bytes(os.urandom(3), "big")
+        print(f"Using seed: {seed}")
+        generator = torch.Generator("cuda").manual_seed(seed)
+
         # queue prompt
         img_output_path = self.get_workflow_output(
             input_prompt = input_prompt,

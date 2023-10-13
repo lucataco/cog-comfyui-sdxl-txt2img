@@ -56,7 +56,7 @@ with open(workflow_config, 'r') as file:
 
 
 #set the text prompt for our positive CLIPTextEncode
-prompt["6"]["inputs"]["text"] = "masterpiece best quality man"
+prompt["6"]["inputs"]["text"] = "beautiful scenery nature glass bottle landscape, orange galaxy bottle"
 
 #set the seed for our KSampler node
 prompt["3"]["inputs"]["seed"] = 196429611935343
