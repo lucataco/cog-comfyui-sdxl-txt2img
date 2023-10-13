@@ -22,4 +22,3 @@ os.system("wget https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1
 
 # Move all models to ComfyUI/models/checkpoints
 # os.system("mv ./models/checkpoints/* ComfyUI/models/checkpoints/")
-
