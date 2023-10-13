@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import shutil
+
+# append project directory to path so predict.py can be imported
+# sys.path.append('.') 
+# from predict import MODEL_NAME, MODEL_CACHE, CONTROL_CACHE
+
+# Clone ComfyUI repo
+os.system("git clone https://github.com/comfyanonymous/ComfyUI.git")
+os.system("mkdir -p models/checkpoints")
+
+# TODO: See if linking from ComfyUI/models/checkpoints to models/checkpoints works
+os.system("rm -rf ComfyUI/models/checkpoints")
+os.system("ln -s /src/models/checkpoints ComfyUI/models/checkpoints")
+
+# Download model weights
+os.system("wget https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors -P models/checkpoints/")
+os.system("wget https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors -P models/checkpoints/")
+
+# Move all models to ComfyUI/models/checkpoints
+# os.system("mv ./models/checkpoints/* ComfyUI/models/checkpoints/")
+
